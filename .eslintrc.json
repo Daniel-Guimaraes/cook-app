@@ -1,0 +1,48 @@
+{
+  "extends": "@rocketseat/eslint-config/react",
+  "plugins": ["import"],
+  "rules": {
+    "camelcase": "off",
+    "jsx-a11y/alt-text": "off",
+    "sort-imports": ["error", {"ignoreCase": true, "ignoreDeclarationSort": true}],
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal", "parent", "sibling"],
+        "pathGroups": [
+          {
+            "pattern": "react+(|-native)",
+            "group": "builtin",
+            "position": "before"
+          },
+          {
+            "pattern": "react-*",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "@/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "./",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "@assets/**",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react+(|-native)"],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "newlines-between": "always"
+      }
+    ]
+  }
+}
