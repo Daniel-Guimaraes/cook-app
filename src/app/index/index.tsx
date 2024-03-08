@@ -4,12 +4,14 @@ import { Alert, ScrollView, Text, View } from 'react-native'
 import { router } from 'expo-router'
 
 import { Ingredient } from '@/components/Ingredient'
+import { Loading } from '@/components/Loading'
 import { Selected } from '@/components/Selected'
 import { services } from '@/services'
 
 import { styles } from './styles'
 
 export default function Index() {
+  const [isLoading, setIsLoading] = useState(true)
   const [selected, setSelected] = useState<string[]>([])
   const [ingredients, setIngredients] = useState<IngredientResponse[]>([])
 
@@ -33,12 +35,19 @@ export default function Index() {
   }
 
   function handleSearch() {
-    router.navigate('/recipes')
+    router.navigate('/recipes/' + selected)
   }
 
   useEffect(() => {
-    services.ingredients.findAll().then(setIngredients)
+    services.ingredients
+      .findAll()
+      .then(setIngredients)
+      .finally(() => setIsLoading(false))
   }, [])
+
+  if (isLoading) {
+    return <Loading />
+  }
 
   return (
     <View style={styles.container}>

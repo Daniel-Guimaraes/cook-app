@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 22,
+    marginBottom: 12,
   },
   step: {
     fontSize: theme.fonts.size.body.sm,
