@@ -1,5 +1,7 @@
 import { Image, Pressable, PressableProps, Text } from 'react-native'
 
+import { services } from '@/services'
+
 import { style } from './style'
 
 export type IngredientProps = {
@@ -16,8 +18,11 @@ export function Ingredient({
 }: IngredientProps & PressableProps) {
   return (
     <Pressable style={[style.container, selected && style.selected]} {...rest}>
-      <Image source={require('@/images/apple.png')} style={style.image} />
-      <Text style={style.title}>Maçã</Text>
+      <Image
+        source={{ uri: `${services.storage.imagePath}/${image}` }}
+        style={style.image}
+      />
+      <Text style={style.title}>{name}</Text>
     </Pressable>
   )
 }
